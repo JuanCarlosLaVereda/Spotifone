@@ -1,0 +1,17 @@
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+    <persistence-unit name="Spotifone" transaction-type="RESOURCE_LOCAL">
+
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mi_bdd"/>
+            <property name="jakarta.persistence.jdbc.user" value="juancarlos"/>
+            <property name="jakarta.persistence.jdbc.password" value="1234"/>
+
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>
