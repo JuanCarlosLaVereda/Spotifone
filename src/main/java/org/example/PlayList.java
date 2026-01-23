@@ -17,6 +17,11 @@ public class PlayList {
     @Column
     private String descripcion;
 
+    @ManyToOne
+    @JoinColumn(name = "playLists")
+    private Usuario usuarioPropietario;
+
+
     public PlayList() {}
 
     public Long getId() {

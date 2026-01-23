@@ -2,6 +2,9 @@ package org.example;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -15,6 +18,14 @@ public class Usuario {
 
     @Column(unique = true)
     private String email;
+
+    @OneToOne
+    @JoinColumn(name = "id_suscripcion")
+    private Suscripcion suscripcion;
+
+    @OneToMany(mappedBy = "usuarioPropietario", cascade = CascadeType.ALL)
+    private List<PlayList> playLists = new ArrayList<>();
+
 
     public Usuario() {}
 

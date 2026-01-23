@@ -3,6 +3,9 @@ package org.example;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "artistas")
 public class Artista {
@@ -19,6 +22,11 @@ public class Artista {
 
     @Enumerated(EnumType.STRING)
     private GeneroMusical genero;
+
+    @OneToMany(mappedBy = "cancion", cascade = CascadeType.ALL)
+    private List<Cancion> canciones = new ArrayList<>();
+
+
 
     public Artista() {}
 
@@ -48,5 +56,13 @@ public class Artista {
 
     public void setGenero(GeneroMusical genero) {
         this.genero = genero;
+    }
+
+    public List<Cancion> getCanciones() {
+        return canciones;
+    }
+
+    public void setCanciones(List<Cancion> canciones) {
+        this.canciones = canciones;
     }
 }

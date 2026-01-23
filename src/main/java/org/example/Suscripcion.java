@@ -21,6 +21,9 @@ public class Suscripcion {
     @Column
     private Double precio;
 
+    @OneToOne(mappedBy = "suscripcion")
+    private Usuario usuario;
+
     public Suscripcion() {}
 
     public Long getId() {

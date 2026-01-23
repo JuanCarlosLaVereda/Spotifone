@@ -16,6 +16,10 @@ public class Cancion {
     @Column
     private Integer duracion;
 
+    @ManyToOne
+    @JoinColumn(name = "canciones")
+    private Artista artista;
+
     public Cancion() {}
 
     public Long getId() {
