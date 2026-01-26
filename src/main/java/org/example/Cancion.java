@@ -17,8 +17,13 @@ public class Cancion {
     private Integer duracion;
 
     @ManyToOne
-    @JoinColumn(name = "canciones")
-    private Artista artista;
+    @JoinColumn(name = "artista")
+    private Artista artistaCancion;
+
+    public Cancion(String titulo, Integer duracion) {
+        this.titulo = titulo;
+        this.duracion = duracion;
+    }
 
     public Cancion() {}
 
@@ -40,5 +45,13 @@ public class Cancion {
 
     public void setDuracion(Integer duracion) {
         this.duracion = duracion;
+    }
+
+    public Artista getArtistaCancion() {
+        return artistaCancion;
+    }
+
+    public void setArtistaCancion(Artista artistaCancion) {
+        this.artistaCancion = artistaCancion;
     }
 }

@@ -19,7 +19,7 @@ public class Usuario {
     @Column(unique = true)
     private String email;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_suscripcion")
     private Suscripcion suscripcion;
 
@@ -28,6 +28,11 @@ public class Usuario {
 
 
     public Usuario() {}
+
+    public Usuario(String nick, String email) {
+        this.nick = nick;
+        this.email = email;
+    }
 
     public Long getId() {
         return id;
@@ -47,5 +52,13 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Suscripcion getSuscripcion() {
+        return suscripcion;
+    }
+
+    public void setSuscripcion(Suscripcion suscripcion) {
+        this.suscripcion = suscripcion;
     }
 }

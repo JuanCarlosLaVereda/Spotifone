@@ -12,7 +12,7 @@ public class Suscripcion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private TipoSuscripcion tipoSuscripcion;
 
     @Column
@@ -21,10 +21,17 @@ public class Suscripcion {
     @Column
     private Double precio;
 
-    @OneToOne(mappedBy = "suscripcion")
+    @OneToOne(mappedBy = "suscripcion", cascade = CascadeType.PERSIST)
     private Usuario usuario;
 
     public Suscripcion() {}
+
+    public Suscripcion(TipoSuscripcion tipoSuscripcion, LocalDate fechaRenovacion, Double precio, Usuario usuario) {
+        this.tipoSuscripcion = tipoSuscripcion;
+        this.fechaRenovacion = fechaRenovacion;
+        this.precio = precio;
+        this.usuario = usuario;
+    }
 
     public Long getId() {
         return id;

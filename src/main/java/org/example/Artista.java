@@ -14,7 +14,7 @@ public class Artista {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(unique = true)
     private String nombre;
 
     @Column
@@ -23,12 +23,21 @@ public class Artista {
     @Enumerated(EnumType.STRING)
     private GeneroMusical genero;
 
-    @OneToMany(mappedBy = "cancion", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "artistaCancion", cascade = CascadeType.ALL)
     private List<Cancion> canciones = new ArrayList<>();
 
-
-
     public Artista() {}
+
+    public Artista(String nombre, String nacionalidad, GeneroMusical genero) {
+        this.nombre = nombre;
+        this.nacionalidad = nacionalidad;
+        this.genero = genero;
+    }
+
+    public void addCancion(Cancion c){
+        canciones.add(c);
+        c.setArtistaCancion(this);
+    }
 
     public Long getId() {
         return id;
