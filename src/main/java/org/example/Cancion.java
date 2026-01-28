@@ -2,6 +2,9 @@ package org.example;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "canciones")
 public class Cancion {
@@ -20,12 +23,24 @@ public class Cancion {
     @JoinColumn(name = "artista")
     private Artista artistaCancion;
 
+    @ManyToMany
+    @JoinTable(
+            name = "playlist_contenido",
+            joinColumns = @JoinColumn(name = "id_cancion"),
+            inverseJoinColumns = @JoinColumn(name = "id_playlist")
+    )
+    private List<PlayList> playLists = new ArrayList<>();
+
     public Cancion(String titulo, Integer duracion) {
         this.titulo = titulo;
         this.duracion = duracion;
     }
 
     public Cancion() {}
+
+    public void addPlayList(PlayList playList) {
+        playLists.add(playList);
+    }
 
     public Long getId() {
         return id;
